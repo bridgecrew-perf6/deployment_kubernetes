@@ -1,0 +1,18 @@
+{
+	"ServiceHeader":{
+		"ServiceVersion":"1.0",
+		"MessageID":"vsii-220307",
+		"CorrelationID":"",
+		"ParentMessageID":"",
+		"FromID":{
+			"ID":"ib",
+			"Name":"Internet banking"
+		},
+		"CreateTime":"2021-12-21T10:14:15.854+07:00",
+		"Signature":""
+	},
+	"PayloadInqReq":
+	{
+		"UsageLimitCode":"64382006000"
+	}
+}

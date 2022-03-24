@@ -1,0 +1,15 @@
+- Lệnh build Images: docker build -t phivannam/cleframework:v1 -f Dockerfile .
+- Lệnh push Images lên DockerDub: docker push phivannam/cleframework:v1
+- Lệnh lấy Cluster IP của Kafka (tên namespace): kubectl get svc -n kafka
+
+- Lệnh trở về thư mục trước: cd ..
+- Lệnh tạo thư mục: mkdir POC
+- Lệnh tạo file: nano cleframework.yaml
+	+ Ctrl+x(thoát file)
+	+ Ctrl+s(Lưu file)
+- Lệnh xóa file: rm -f cleframework.yaml
+
+- Lệnh deployment lên Kubernetes bằng file yaml: kubectl apply -f cleframework.yaml
+- Lệnh kiểm tra những container đang chạy trên Kubernetes có namespace là tibco: kubectl get po -o wide -n tibco
+- Lệnh xóa deployment: kubectl delete deployment cleframework-deployment -n tibco
+- Lệnh xóa service: kubectl delete service cleframework-service -n tibco

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cleframework-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      containers:
+      - name: cleframework
+        image: phivannam/cleframework:v2
+        ports:
+            - containerPort: 8081
+      hostAliases:
+      - hostnames:
+        - "k8s-efk"
+        ip: "192.168.0.224"
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: cleframework-service
+    namespace: default
+spec:
+    type: NodePort
+    selector:
+        bb: web
+    ports:
+    - port: 8081
+      targetPort: 8081
+      nodePort: 31081

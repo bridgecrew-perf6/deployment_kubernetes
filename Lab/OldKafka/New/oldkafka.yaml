@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oldkafka-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      containers:
+      - name: oldkafka
+        image: phivannam/oldkafka:v1
+        ports:
+            - containerPort: 8082
+      hostAliases:
+      - hostnames:
+        - "k8s-efk"
+        ip: "192.168.0.224"
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: oldkafka-service
+    namespace: default
+spec:
+    type: NodePort
+    selector:
+        bb: web
+    ports:
+    - port: 8082
+      targetPort: 8082
+      nodePort: 31082
+
